@@ -12,6 +12,7 @@
 		A23209CE1C9F487400DBD238 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23209CC1C9F487400DBD238 /* Main.storyboard */; };
 		A23209D01C9F487400DBD238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A23209CF1C9F487400DBD238 /* Assets.xcassets */; };
 		A23209D31C9F487400DBD238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23209D11C9F487400DBD238 /* LaunchScreen.storyboard */; };
+		A23209DB1CA15F0C00DBD238 /* FlowerChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23209DA1CA15F0C00DBD238 /* FlowerChart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		A23209CF1C9F487400DBD238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A23209D21C9F487400DBD238 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A23209D41C9F487400DBD238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A23209DA1CA15F0C00DBD238 /* FlowerChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowerChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				A23209C81C9F487400DBD238 /* AppDelegate.swift */,
 				A23209CA1C9F487400DBD238 /* ViewController.swift */,
 				A23209CC1C9F487400DBD238 /* Main.storyboard */,
+				A23209DA1CA15F0C00DBD238 /* FlowerChart.swift */,
 				A23209CF1C9F487400DBD238 /* Assets.xcassets */,
 				A23209D11C9F487400DBD238 /* LaunchScreen.storyboard */,
 				A23209D41C9F487400DBD238 /* Info.plist */,
@@ -137,6 +140,7 @@
 			files = (
 				A23209CB1C9F487400DBD238 /* ViewController.swift in Sources */,
 				A23209C91C9F487400DBD238 /* AppDelegate.swift in Sources */,
+				A23209DB1CA15F0C00DBD238 /* FlowerChart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +288,7 @@
 				A23209D91C9F487400DBD238 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
