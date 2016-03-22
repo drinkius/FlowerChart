@@ -95,7 +95,7 @@ class FlowerChart: UIView {
     func drawMeasures(petalNumber: Int) {
         
         let pi:CGFloat = CGFloat(M_PI)
-        let strokeColor: UIColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.2)
+        let strokeColor: UIColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
         let fillColor: UIColor = UIColor.clearColor()
         
         let isize = min(petalCanvas.bounds.width, petalCanvas.bounds.height)
