@@ -9,21 +9,35 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var petalCanvas: UIView!
-    @IBAction func refreshFlower(sender: AnyObject) {
-    }
     
+    var flowerChart: FlowerChart!
     var sizesArray = [Double]()
     var colorsArray = [UIColor]()
     let totalPetals = 9
     
+    @IBOutlet weak var petalCanvas: UIView!
+    @IBAction func refreshFlower(sender: AnyObject) {
+        
+        if sizesArray.count > 0 {
+            sizesArray.removeAll()
+            for (var i = 0; i < totalPetals; i++) {
+                let size = Double(arc4random_uniform(UInt32(totalPetals)) + 1)
+                sizesArray.append(size)
+            }
+
+            } else {
+                for (var i = 0; i < totalPetals; i++) {
+                    let size = Double(arc4random_uniform(UInt32(totalPetals)) + 1)
+                    sizesArray.append(size)
+            }
+        }
+        
+        flowerChart.setPetalSizes(sizesArray)
+        
+    }
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        
-        //      let animahi = PetalAnimations(petalCanvas: petalCanvas, petalsArray: petalsArray, sizesArray: sizesArray)
-        //      animahi.setPetalSizes(sizesArray)
-        
         
         colorsArray.append(UIColor(red: 255/255, green: 233/255, blue: 0/255, alpha: 0.99))
         colorsArray.append(UIColor(red: 226/255, green: 3/255, blue: 29/255, alpha: 0.99))
@@ -46,7 +60,9 @@ class ViewController: UIViewController {
         sizesArray.append(0.0)
         
         let flowerChart = FlowerChart(petalCanvas: petalCanvas, totalPetals: totalPetals)
+        self.flowerChart = flowerChart
         flowerChart.drawFlower(colorsArray)
+        flowerChart.setPetalSizes(sizesArray)
         
     }
 

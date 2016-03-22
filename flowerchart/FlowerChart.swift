@@ -15,7 +15,7 @@ class FlowerChart: UIView {
     var totalPetals: Int!
     var maxArcWidth: CGFloat!
     var colorsArray: [UIColor]!
-    var petalsArray: [UIView]!
+    var petalsArray = [UIView]()
     
     init(petalCanvas: UIView, totalPetals: Int) {
         self.petalCanvas = petalCanvas
@@ -44,7 +44,7 @@ class FlowerChart: UIView {
             let petalView = FlowerChart(petalCanvas: petalCanvas, totalPetals: totalPetals)
             petalView.frame = petalCanvas.bounds
             petalCanvas.addSubview(petalView)
-//            petalsArray.append(petalView)
+            petalsArray.append(petalView)
             petalView.drawPetalHere(i, petalColor: colorsArray[i])
         }
         
@@ -139,6 +139,33 @@ class FlowerChart: UIView {
         self.layer.addSublayer(littleLinePathLayer)
         
     }
-
+    
+    func setPetalSizes(sizesArray: [Double]) {
+        
+        for(var i=0; i < petalsArray.endIndex; i++) {
+            
+            let scale = CGAffineTransformMakeScale(0.6, 0.6)
+            let rotate = CGAffineTransformMakeRotation(360)
+            let currentPetalDelay = Double(i) / 8
+            let petalToSet = petalsArray[i]
+            let totalPetals = CGFloat(petalsArray.endIndex + 1)
+            let currentPetalSize = totalPetals + CGFloat(sizesArray[i])
+            
+            petalToSet.transform = CGAffineTransformConcat(scale, rotate)
+            petalToSet.alpha = 0
+            
+            UIView.animateWithDuration(0.5, delay: currentPetalDelay, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
+                
+                let scale = CGAffineTransformMakeScale(currentPetalSize / totalPetals, currentPetalSize / totalPetals)
+                let rotate = CGAffineTransformMakeRotation(0)
+                petalToSet.transform = CGAffineTransformConcat(scale, rotate)
+                petalToSet.alpha = 1
+                
+                }, completion: { (finished: Bool) -> Void in
+            })
+            
+        }
+        
+    }
     
 }
