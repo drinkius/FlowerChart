@@ -21,13 +21,13 @@ class ViewController: UIViewController {
         if sizesArray.count > 0 {
             sizesArray.removeAll()
             for _ in 0 ..< totalPetals {
-                let size = Double(arc4random_uniform(UInt32(totalPetals)) + 1)
+                let size = Double(arc4random_uniform(UInt32(11)))
                 sizesArray.append(size)
             }
 
             } else {
             for _ in 0 ..< totalPetals {
-                let size = Double(arc4random_uniform(UInt32(totalPetals)) + 1)
+                let size = Double(arc4random_uniform(UInt32(11)))
                 sizesArray.append(size)
             }
         }
@@ -48,15 +48,15 @@ class ViewController: UIViewController {
         colorsArray.append(UIColor(red: 4/255, green: 230/255, blue: 230/255, alpha: 0.99))
         colorsArray.append(UIColor(red: 4/255, green: 250/255, blue: 225/255, alpha: 0.99))
         
-        sizesArray.append(0.0)
+        sizesArray.append(1.0)
         sizesArray.append(10.0)
-        sizesArray.append(0.0)
-        sizesArray.append(0.0)
+        sizesArray.append(1.0)
+        sizesArray.append(1.0)
         sizesArray.append(10.0)
-        sizesArray.append(0.0)
-        sizesArray.append(0.0)
+        sizesArray.append(1.0)
+        sizesArray.append(1.0)
         sizesArray.append(10.0)
-        sizesArray.append(0.0)
+        sizesArray.append(1.0)
         
         let flowerChart = FlowerChart(petalCanvas: petalCanvas, totalPetals: totalPetals)
         self.flowerChart = flowerChart

@@ -11,9 +11,7 @@ import UIKit
 class FlowerChart: UIView {
     
     var petalCanvas: UIView!
-    var petalNumber: Int!
     var totalPetals: Int!
-    var maxArcWidth: CGFloat!
     var colorsArray: [UIColor]!
     var petalsArray = [UIView]()
     
@@ -59,11 +57,10 @@ class FlowerChart: UIView {
         
         let pi:CGFloat = CGFloat(M_PI)
         let strokeColor: UIColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
-
         
         let maxSize = min(petalCanvas.bounds.width, petalCanvas.bounds.height)
         let outlineWidth: CGFloat = 1
-        let arcRadius: CGFloat = maxSize/4
+        let arcRadius: CGFloat = maxSize/2
         let center = CGPoint(x:petalCanvas.bounds.width/2, y: petalCanvas.bounds.height/2)
         let startAngle = CGFloat(0) + CGFloat(petalNumber)*2*pi / CGFloat(totalPetals) - pi/2
         let endAngle = startAngle + 2*pi / CGFloat(totalPetals)
@@ -137,16 +134,16 @@ class FlowerChart: UIView {
             
             let scale = CGAffineTransformMakeScale(0.6, 0.6)
             let rotate = CGAffineTransformMakeRotation(360)
-            let currentPetalDelay = Double(i) / 8
+            let currentDelay = Double(i) / 8
             let petalToSet = petalsArray[i]
-            let currentPetalSize = CGFloat(totalPetals) + CGFloat(sizesArray[i])
+            let currentSize = CGFloat(sizesArray[i])
             
             petalToSet.transform = CGAffineTransformConcat(scale, rotate)
             petalToSet.alpha = 0
             
-            UIView.animateWithDuration(0.5, delay: currentPetalDelay, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
+            UIView.animateWithDuration(0.5, delay: currentDelay, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
                 
-                let scale = CGAffineTransformMakeScale(currentPetalSize / CGFloat(self.totalPetals), currentPetalSize / CGFloat(self.totalPetals))
+                let scale = CGAffineTransformMakeScale(currentSize / 10, currentSize / 10)
                 let rotate = CGAffineTransformMakeRotation(0)
                 petalToSet.transform = CGAffineTransformConcat(scale, rotate)
                 petalToSet.alpha = 1
