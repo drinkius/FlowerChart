@@ -20,20 +20,19 @@ class ViewController: UIViewController {
         
         if sizesArray.count > 0 {
             sizesArray.removeAll()
-            for (var i = 0; i < totalPetals; i++) {
+            for _ in 0 ..< totalPetals {
                 let size = Double(arc4random_uniform(UInt32(totalPetals)) + 1)
                 sizesArray.append(size)
             }
 
             } else {
-                for (var i = 0; i < totalPetals; i++) {
-                    let size = Double(arc4random_uniform(UInt32(totalPetals)) + 1)
-                    sizesArray.append(size)
+            for _ in 0 ..< totalPetals {
+                let size = Double(arc4random_uniform(UInt32(totalPetals)) + 1)
+                sizesArray.append(size)
             }
         }
         
         flowerChart.setPetalSizes(sizesArray)
-        
     }
 
     override func viewDidAppear(animated: Bool) {

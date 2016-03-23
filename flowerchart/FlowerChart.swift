@@ -48,21 +48,22 @@ class FlowerChart: UIView {
             petalView.drawPetalHere(i, petalColor: colorsArray[i])
         }
         
-        for (var i = 0; i < totalPetals; i++) {
+        for i in 0 ..< totalPetals {
             targetInitialization(i)
             petalInitialization(i)
         }
+        
     }
     
     func drawPetalHere(petalNumber: Int, petalColor: UIColor) {
         
         let pi:CGFloat = CGFloat(M_PI)
         let strokeColor: UIColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+
         
-        let isize = min(petalCanvas.bounds.width, petalCanvas.bounds.height)
+        let maxSize = min(petalCanvas.bounds.width, petalCanvas.bounds.height)
         let outlineWidth: CGFloat = 1
-        let innerRadius: CGFloat = 0
-        let arcRadius: CGFloat = isize/4
+        let arcRadius: CGFloat = maxSize/4
         let center = CGPoint(x:petalCanvas.bounds.width/2, y: petalCanvas.bounds.height/2)
         let startAngle = CGFloat(0) + CGFloat(petalNumber)*2*pi / CGFloat(totalPetals) - pi/2
         let endAngle = startAngle + 2*pi / CGFloat(totalPetals)
@@ -72,16 +73,8 @@ class FlowerChart: UIView {
             startAngle: startAngle,
             endAngle: endAngle,
             clockwise: true)
-        
-        petalPath.addArcWithCenter(center,
-            radius: innerRadius + outlineWidth/2,
-            startAngle: endAngle,
-            endAngle: startAngle,
-            clockwise: false)
+        petalPath.addLineToPoint(center)
         petalPath.closePath()
-        
-        petalPath.lineWidth = outlineWidth;
-        petalPath.stroke()
         
         let petalShapeLayer: CAShapeLayer = CAShapeLayer()
         petalShapeLayer.path = petalPath.CGPath
@@ -98,16 +91,16 @@ class FlowerChart: UIView {
         let strokeColor: UIColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
         let fillColor: UIColor = UIColor.clearColor()
         
-        let isize = min(petalCanvas.bounds.width, petalCanvas.bounds.height)
+        let maxSize = min(petalCanvas.bounds.width, petalCanvas.bounds.height)
         let outlineWidth: CGFloat = 1
-        let arcRadius: CGFloat = isize/2
+        let arcRadius: CGFloat = maxSize/2
         let center = CGPoint(x:petalCanvas.bounds.width/2, y: petalCanvas.bounds.height/2)
         let startAngle = CGFloat(0) + CGFloat(petalNumber)*2*pi / CGFloat(totalPetals) - pi/2
         let endAngle = startAngle + 2*pi / CGFloat(totalPetals)
         
         let midPointAngle = (startAngle + endAngle) / 2.0
-        let targetPoint1 = CGPoint(x: center.x + (arcRadius - 20) * cos(midPointAngle), y: center.y + (arcRadius - 20) *  sin(midPointAngle))
-        let targetPoint2 = CGPoint(x: center.x + (arcRadius - 40) * cos(midPointAngle), y: center.y + (arcRadius - 40) *  sin(midPointAngle))
+        let measuresPoint1 = CGPoint(x: center.x + (arcRadius - 20) * cos(midPointAngle), y: center.y + (arcRadius - 20) *  sin(midPointAngle))
+        let measuresPoint2 = CGPoint(x: center.x + (arcRadius - 40) * cos(midPointAngle), y: center.y + (arcRadius - 40) *  sin(midPointAngle))
         
         let arcPath = UIBezierPath(arcCenter: center,
             radius:  arcRadius,
@@ -118,11 +111,9 @@ class FlowerChart: UIView {
         arcPath.stroke()
         
         let littleLinePath = UIBezierPath()
-        littleLinePath.moveToPoint(targetPoint1)
-        littleLinePath.addLineToPoint(targetPoint2)
+        littleLinePath.moveToPoint(measuresPoint1)
+        littleLinePath.addLineToPoint(measuresPoint2)
         littleLinePath.closePath()
-        littleLinePath.lineWidth = outlineWidth
-        littleLinePath.stroke()
         
         let arcPathLayer: CAShapeLayer = CAShapeLayer()
         arcPathLayer.path = arcPath.CGPath
@@ -142,30 +133,27 @@ class FlowerChart: UIView {
     
     func setPetalSizes(sizesArray: [Double]) {
         
-        for(var i=0; i < petalsArray.endIndex; i++) {
+        for i in 0 ..< petalsArray.endIndex {
             
             let scale = CGAffineTransformMakeScale(0.6, 0.6)
             let rotate = CGAffineTransformMakeRotation(360)
             let currentPetalDelay = Double(i) / 8
             let petalToSet = petalsArray[i]
-            let totalPetals = CGFloat(petalsArray.endIndex + 1)
-            let currentPetalSize = totalPetals + CGFloat(sizesArray[i])
+            let currentPetalSize = CGFloat(totalPetals) + CGFloat(sizesArray[i])
             
             petalToSet.transform = CGAffineTransformConcat(scale, rotate)
             petalToSet.alpha = 0
             
             UIView.animateWithDuration(0.5, delay: currentPetalDelay, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
                 
-                let scale = CGAffineTransformMakeScale(currentPetalSize / totalPetals, currentPetalSize / totalPetals)
+                let scale = CGAffineTransformMakeScale(currentPetalSize / CGFloat(self.totalPetals), currentPetalSize / CGFloat(self.totalPetals))
                 let rotate = CGAffineTransformMakeRotation(0)
                 petalToSet.transform = CGAffineTransformConcat(scale, rotate)
                 petalToSet.alpha = 1
                 
                 }, completion: { (finished: Bool) -> Void in
             })
-            
         }
-        
     }
     
 }
