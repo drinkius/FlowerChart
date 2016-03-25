@@ -1,6 +1,6 @@
 # FlowerChart - custom chart written in Swift 
 
-Flower-shaped chart written in Swift, this repo is a sample project you can build directly on your iPhone. The charts generated are fully vector and scale without any rasterization and annying pixels. Part of the https://github.com/vsouza/awesome-ios
+Flower-shaped chart written in Swift, this repo is a sample project you can build directly on your iPhone. The charts generated are fully vector and scale without any rasterization and annying pixels. Part of the [Awesome iOS](https://github.com/vsouza/awesome-ios) curated list. 
 
 
 The chart itself looks as follows:
