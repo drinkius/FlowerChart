@@ -14,6 +14,7 @@ class FlowerChart: UIView {
     var totalPetals: Int!
     var colorsArray: [UIColor]!
     var petalsArray = [UIView]()
+    var centerRadius: CGFloat = 0.0
     
     init(petalCanvas: UIView, totalPetals: Int) {
         self.petalCanvas = petalCanvas
@@ -151,6 +152,21 @@ class FlowerChart: UIView {
                 }, completion: { (finished: Bool) -> Void in
             })
         }
+    }
+    
+    func drawCenter(centerRadius: CGFloat) {
+        
+        self.centerRadius = centerRadius
+        let centerPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 2.0 * centerRadius, height: 2.0 * centerRadius), cornerRadius: centerRadius)
+        centerPath.closePath()
+        let centerShapeLayer: CAShapeLayer = CAShapeLayer()
+        centerShapeLayer.path = centerPath.CGPath
+        centerShapeLayer.position = CGPoint(x: CGRectGetMidX(petalCanvas.bounds) - centerRadius, y: CGRectGetMidY(petalCanvas.bounds) - centerRadius)
+        centerShapeLayer.fillColor = UIColor.whiteColor().CGColor
+        centerShapeLayer.lineWidth = 1
+        centerShapeLayer.strokeColor = UIColor.blackColor().CGColor
+        petalCanvas.layer.addSublayer(centerShapeLayer)
+        
     }
     
 }

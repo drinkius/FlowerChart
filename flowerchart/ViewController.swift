@@ -57,10 +57,11 @@ class ViewController: UIViewController {
         sizesArray.append(1.0)
         sizesArray.append(10.0)
         sizesArray.append(1.0)
-        
+
         let flowerChart = FlowerChart(petalCanvas: petalCanvas, totalPetals: totalPetals)
         self.flowerChart = flowerChart
         flowerChart.drawFlower(colorsArray)
+//        flowerChart.drawCenter(20)
         flowerChart.setPetalSizes(sizesArray)
         
     }
