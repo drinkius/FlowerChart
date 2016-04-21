@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var flowerChart: FlowerChart!
     var sizesArray = [Double]()
     var colorsArray = [UIColor]()
+    var labelsArray = [String]()
     let totalPetals = 9
     
     @IBOutlet weak var petalCanvas: UIView!
@@ -57,12 +58,23 @@ class ViewController: UIViewController {
         sizesArray.append(1.0)
         sizesArray.append(10.0)
         sizesArray.append(1.0)
+        
+        labelsArray.append("First")
+        labelsArray.append("Second")
+        labelsArray.append("Third")
+        labelsArray.append("Fourth")
+        labelsArray.append("Fifth")
+        labelsArray.append("Sixth")
+        labelsArray.append("Seventh")
+        labelsArray.append("Eighth")
+        labelsArray.append("Ninth")
 
         let flowerChart = FlowerChart(petalCanvas: petalCanvas, totalPetals: totalPetals)
         self.flowerChart = flowerChart
         flowerChart.drawFlower(colorsArray)
 //        flowerChart.drawCenter(20)
         flowerChart.setPetalSizes(sizesArray)
+        flowerChart.displayLabels(labelsArray)
         
     }
 
