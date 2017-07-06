@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     let totalPetals = 9
     
     @IBOutlet weak var petalCanvas: UIView!
-    @IBAction func refreshFlower(sender: AnyObject) {
+    @IBAction func refreshFlower(_ sender: AnyObject) {
         
         if sizesArray.count > 0 {
             sizesArray.removeAll()
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         flowerChart.setPetalSizes(sizesArray)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
         colorsArray.append(UIColor(red: 255/255, green: 233/255, blue: 0/255, alpha: 0.99))
@@ -72,11 +72,9 @@ class ViewController: UIViewController {
         let flowerChart = FlowerChart(petalCanvas: petalCanvas, totalPetals: totalPetals)
         self.flowerChart = flowerChart
         flowerChart.drawFlower(colorsArray)
-//        flowerChart.drawCenter(20)
         flowerChart.setPetalSizes(sizesArray)
         flowerChart.displayLabels(labelsArray)
         
     }
-
 }
 

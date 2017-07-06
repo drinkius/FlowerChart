@@ -19,27 +19,27 @@ class FlowerChart: UIView {
     init(petalCanvas: UIView, totalPetals: Int) {
         self.petalCanvas = petalCanvas
         self.totalPetals = totalPetals
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    func drawFlower(colorsArray: [UIColor]) {
+    func drawFlower(_ colorsArray: [UIColor]) {
         
         let targetCanvas = UIView()
         targetCanvas.frame = petalCanvas.bounds
         petalCanvas.addSubview(targetCanvas)
         
-        func targetInitialization(i: Int) -> Void {
+        func targetInitialization(_ i: Int) -> Void {
             let targetView = FlowerChart(petalCanvas: petalCanvas, totalPetals: totalPetals)
             targetView.frame = targetCanvas.bounds
             targetView.drawMeasures(i)
             targetCanvas.addSubview(targetView)
         }
         
-        func petalInitialization(i: Int) -> Void{
+        func petalInitialization(_ i: Int) -> Void{
             let petalView = FlowerChart(petalCanvas: petalCanvas, totalPetals: totalPetals)
             petalView.frame = petalCanvas.bounds
             petalCanvas.addSubview(petalView)
@@ -54,7 +54,7 @@ class FlowerChart: UIView {
         
     }
     
-    func drawPetalHere(petalNumber: Int, petalColor: UIColor) {
+    func drawPetalHere(_ petalNumber: Int, petalColor: UIColor) {
         
         let pi:CGFloat = CGFloat(M_PI)
         let strokeColor: UIColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
@@ -71,23 +71,23 @@ class FlowerChart: UIView {
             startAngle: startAngle,
             endAngle: endAngle,
             clockwise: true)
-        petalPath.addLineToPoint(center)
-        petalPath.closePath()
+        petalPath.addLine(to: center)
+        petalPath.close()
         
         let petalShapeLayer: CAShapeLayer = CAShapeLayer()
-        petalShapeLayer.path = petalPath.CGPath
-        petalShapeLayer.fillColor = petalColor.CGColor
+        petalShapeLayer.path = petalPath.cgPath
+        petalShapeLayer.fillColor = petalColor.cgColor
         petalShapeLayer.lineWidth = outlineWidth
-        petalShapeLayer.strokeColor = strokeColor.CGColor
+        petalShapeLayer.strokeColor = strokeColor.cgColor
         self.layer.addSublayer(petalShapeLayer)
         
     }
     
-    func drawMeasures(petalNumber: Int) {
+    func drawMeasures(_ petalNumber: Int) {
         
         let pi:CGFloat = CGFloat(M_PI)
         let strokeColor: UIColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
-        let fillColor: UIColor = UIColor.clearColor()
+        let fillColor: UIColor = UIColor.clear
         
         let maxSize = min(petalCanvas.bounds.width - 20, petalCanvas.bounds.height - 20)
         let outlineWidth: CGFloat = 1
@@ -109,44 +109,44 @@ class FlowerChart: UIView {
         arcPath.stroke()
         
         let littleLinePath = UIBezierPath()
-        littleLinePath.moveToPoint(measuresPoint1)
-        littleLinePath.addLineToPoint(measuresPoint2)
-        littleLinePath.closePath()
+        littleLinePath.move(to: measuresPoint1)
+        littleLinePath.addLine(to: measuresPoint2)
+        littleLinePath.close()
         
         let arcPathLayer: CAShapeLayer = CAShapeLayer()
-        arcPathLayer.path = arcPath.CGPath
-        arcPathLayer.fillColor = fillColor.CGColor
+        arcPathLayer.path = arcPath.cgPath
+        arcPathLayer.fillColor = fillColor.cgColor
         arcPathLayer.lineWidth = outlineWidth
-        arcPathLayer.strokeColor = strokeColor.CGColor
+        arcPathLayer.strokeColor = strokeColor.cgColor
         self.layer.addSublayer(arcPathLayer)
         
         let littleLinePathLayer: CAShapeLayer = CAShapeLayer()
-        littleLinePathLayer.path = littleLinePath.CGPath
-        littleLinePathLayer.fillColor = fillColor.CGColor
+        littleLinePathLayer.path = littleLinePath.cgPath
+        littleLinePathLayer.fillColor = fillColor.cgColor
         littleLinePathLayer.lineWidth = outlineWidth
-        littleLinePathLayer.strokeColor = strokeColor.CGColor
+        littleLinePathLayer.strokeColor = strokeColor.cgColor
         self.layer.addSublayer(littleLinePathLayer)
         
     }
     
-    func setPetalSizes(sizesArray: [Double]) {
+    func setPetalSizes(_ sizesArray: [Double]) {
         
-        for i in 0 ..< petalsArray.endIndex {
+        for i in petalsArray.indices.suffix(from: 0) {
             
-            let scale = CGAffineTransformMakeScale(0.6, 0.6)
-            let rotate = CGAffineTransformMakeRotation(360)
+            let scale = CGAffineTransform(scaleX: 0.6, y: 0.6)
+            let rotate = CGAffineTransform(rotationAngle: 360)
             let currentDelay = Double(i) / 8
             let petalToSet = petalsArray[i]
             let currentSize = CGFloat(sizesArray[i])
             
-            petalToSet.transform = CGAffineTransformConcat(scale, rotate)
+            petalToSet.transform = scale.concatenating(rotate)
             petalToSet.alpha = 0
             
-            UIView.animateWithDuration(0.5, delay: currentDelay, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
+            UIView.animate(withDuration: 0.5, delay: currentDelay, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: UIViewAnimationOptions(), animations: { () -> Void in
                 
-                let scale = CGAffineTransformMakeScale(currentSize / 10, currentSize / 10)
-                let rotate = CGAffineTransformMakeRotation(0)
-                petalToSet.transform = CGAffineTransformConcat(scale, rotate)
+                let scale = CGAffineTransform(scaleX: currentSize / 10, y: currentSize / 10)
+                let rotate = CGAffineTransform(rotationAngle: 0)
+                petalToSet.transform = scale.concatenating(rotate)
                 petalToSet.alpha = 1
                 
                 }, completion: { (finished: Bool) -> Void in
@@ -154,22 +154,22 @@ class FlowerChart: UIView {
         }
     }
     
-    func drawCenter(centerRadius: CGFloat) {
+    func drawCenter(_ centerRadius: CGFloat) {
         
         self.centerRadius = centerRadius
         let centerPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 2.0 * centerRadius - 10, height: 2.0 * centerRadius - 10), cornerRadius: centerRadius)
-        centerPath.closePath()
+        centerPath.close()
         let centerShapeLayer: CAShapeLayer = CAShapeLayer()
-        centerShapeLayer.path = centerPath.CGPath
-        centerShapeLayer.position = CGPoint(x: CGRectGetMidX(petalCanvas.bounds) - centerRadius, y: CGRectGetMidY(petalCanvas.bounds) - centerRadius)
-        centerShapeLayer.fillColor = UIColor.whiteColor().CGColor
+        centerShapeLayer.path = centerPath.cgPath
+        centerShapeLayer.position = CGPoint(x: petalCanvas.bounds.midX - centerRadius, y: petalCanvas.bounds.midY - centerRadius)
+        centerShapeLayer.fillColor = UIColor.white.cgColor
         centerShapeLayer.lineWidth = 1
-        centerShapeLayer.strokeColor = UIColor.blackColor().CGColor
+        centerShapeLayer.strokeColor = UIColor.black.cgColor
         petalCanvas.layer.addSublayer(centerShapeLayer)
         
     }
     
-    func displayLabels(namesArray: [String]) {
+    func displayLabels(_ namesArray: [String]) {
         
         if namesArray.count == totalPetals {
             
@@ -177,7 +177,7 @@ class FlowerChart: UIView {
             
             for name in namesArray {
  
-                let size = CGSizeMake(petalCanvas.bounds.width, petalCanvas.bounds.height)
+                let size = CGSize(width: petalCanvas.bounds.width, height: petalCanvas.bounds.height)
                 
                 UIGraphicsBeginImageContextWithOptions(size, false, 0)
                 
@@ -191,12 +191,12 @@ class FlowerChart: UIView {
 //                CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
 //                CGContextSetLineWidth(context, 10)
                 
-                CGContextSetFillColorWithColor(context, UIColor.clearColor().CGColor)
-                CGContextTranslateCTM (context, size.width / 2, size.height / 2)
-                CGContextScaleCTM (context, 1, -1)
-                CGContextSetShouldAntialias(context, true)
+                context.setFillColor(UIColor.clear.cgColor)
+                context.translateBy (x: size.width / 2, y: size.height / 2)
+                context.scaleBy (x: 1, y: -1)
+                context.setShouldAntialias(true)
                 
-                centreArcPerpendicularText(name, context: context, radius: petalCanvas.bounds.width / 2 - 4, angle: CGFloat(M_PI_2 - M_PI * 2 * (nameNumber - 0.5) / Double(namesArray.count)), colour: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.7), font: UIFont.systemFontOfSize(8), clockwise: true)
+                centreArcPerpendicularText(name, context: context, radius: petalCanvas.bounds.width / 2 - 4, angle: CGFloat(M_PI_2 - M_PI * 2 * (nameNumber - 0.5) / Double(namesArray.count)), colour: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.7), font: UIFont.systemFont(ofSize: 8), clockwise: true)
 //                centreArcPerpendicularText("Anticlockwise", context: context, radius: 50, angle: CGFloat(-M_PI_2), colour: UIColor.blackColor(), font: UIFont.systemFontOfSize(16), clockwise: false)
                 
                 let image = UIGraphicsGetImageFromCurrentImageContext()
@@ -205,7 +205,7 @@ class FlowerChart: UIView {
                 let labelLayer: CAShapeLayer = CAShapeLayer()
                 labelLayer.frame = petalCanvas.bounds
                 labelLayer.setNeedsDisplay()
-                labelLayer.contents = image.CGImage
+                labelLayer.contents = image?.cgImage
                 labelLayer.allowsEdgeAntialiasing = true
                 petalCanvas.layer.addSublayer(labelLayer)
                 
@@ -220,7 +220,7 @@ class FlowerChart: UIView {
     
     // Code for drawing circular text, curtesy of Grimxn from http://stackoverflow.com/questions/32771864/draw-text-along-circular-path-in-swift-for-ios
     
-    func centreArcPerpendicularText(str: String, context: CGContextRef, radius r: CGFloat, angle theta: CGFloat, colour c: UIColor, font: UIFont, clockwise: Bool){
+    func centreArcPerpendicularText(_ str: String, context: CGContext, radius r: CGFloat, angle theta: CGFloat, colour c: UIColor, font: UIFont, clockwise: Bool){
         // *******************************************************
         // This draws the String str around an arc of radius r,
         // with the text centred at polar angle theta
@@ -235,8 +235,8 @@ class FlowerChart: UIView {
         
         // Calculate the arc subtended by each letter and their total
         for i in 0 ..< l {
-            characters += [String(str[str.startIndex.advancedBy(i)])]
-            arcs += [chordToArc(characters[i].sizeWithAttributes(attributes).width, radius: r)]
+            characters += [String(str[str.characters.index(str.startIndex, offsetBy: i)])]
+            arcs += [chordToArc(characters[i].size(attributes: attributes).width, radius: r)]
             totalArc += arcs[i]
         }
         
@@ -263,14 +263,14 @@ class FlowerChart: UIView {
         }
     }
     
-    func chordToArc(chord: CGFloat, radius: CGFloat) -> CGFloat {
+    func chordToArc(_ chord: CGFloat, radius: CGFloat) -> CGFloat {
         // *******************************************************
         // Simple geometry
         // *******************************************************
         return 2 * asin(chord / (2 * radius))
     }
     
-    func centreText(str: String, context: CGContextRef, radius r:CGFloat, angle theta: CGFloat, colour c: UIColor, font: UIFont, slantAngle: CGFloat) {
+    func centreText(_ str: String, context: CGContext, radius r:CGFloat, angle theta: CGFloat, colour c: UIColor, font: UIFont, slantAngle: CGFloat) {
         // *******************************************************
         // This draws the String str centred at the position
         // specified by the polar coordinates (r, theta)
@@ -282,21 +282,21 @@ class FlowerChart: UIView {
         let attributes = [NSForegroundColorAttributeName: c,
                           NSFontAttributeName: font]
         // Save the context
-        CGContextSaveGState(context)
+        context.saveGState()
         // Undo the inversion of the Y-axis (or the text goes backwards!)
-        CGContextScaleCTM(context, 1, -1)
+        context.scaleBy(x: 1, y: -1)
         // Move the origin to the centre of the text (negating the y-axis manually)
-        CGContextTranslateCTM(context, r * cos(theta), -(r * sin(theta)))
+        context.translateBy(x: r * cos(theta), y: -(r * sin(theta)))
         // Rotate the coordinate system
-        CGContextRotateCTM(context, -slantAngle)
+        context.rotate(by: -slantAngle)
         // Calculate the width of the text
-        let offset = str.sizeWithAttributes(attributes)
+        let offset = str.size(attributes: attributes)
         // Move the origin by half the size of the text
-        CGContextTranslateCTM (context, -offset.width / 2, -offset.height / 2) // Move the origin to the centre of the text (negating the y-axis manually)
+        context.translateBy (x: -offset.width / 2, y: -offset.height / 2) // Move the origin to the centre of the text (negating the y-axis manually)
         // Draw the text
-        str.drawAtPoint(CGPointZero, withAttributes: attributes)
+        str.draw(at: CGPoint.zero, withAttributes: attributes)
         // Restore the context
-        CGContextRestoreGState(context)
+        context.restoreGState()
     }
     
 }
