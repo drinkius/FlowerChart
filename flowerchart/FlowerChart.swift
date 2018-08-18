@@ -56,7 +56,7 @@ class FlowerChart: UIView {
     
     func drawPetalHere(_ petalNumber: Int, petalColor: UIColor) {
         
-        let pi:CGFloat = CGFloat(M_PI)
+        let pi:CGFloat = CGFloat(Double.pi)
         let strokeColor: UIColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
         
         let maxSize = min(petalCanvas.bounds.width - 20, petalCanvas.bounds.height - 20)
@@ -85,7 +85,7 @@ class FlowerChart: UIView {
     
     func drawMeasures(_ petalNumber: Int) {
         
-        let pi:CGFloat = CGFloat(M_PI)
+        let pi:CGFloat = CGFloat(Double.pi)
         let strokeColor: UIColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
         let fillColor: UIColor = UIColor.clear
         
@@ -196,8 +196,8 @@ class FlowerChart: UIView {
                 context.scaleBy (x: 1, y: -1)
                 context.setShouldAntialias(true)
                 
-                centreArcPerpendicularText(name, context: context, radius: petalCanvas.bounds.width / 2 - 4, angle: CGFloat(M_PI_2 - M_PI * 2 * (nameNumber - 0.5) / Double(namesArray.count)), colour: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.7), font: UIFont.systemFont(ofSize: 8), clockwise: true)
-//                centreArcPerpendicularText("Anticlockwise", context: context, radius: 50, angle: CGFloat(-M_PI_2), colour: UIColor.blackColor(), font: UIFont.systemFontOfSize(16), clockwise: false)
+                centreArcPerpendicularText(name, context: context, radius: petalCanvas.bounds.width / 2 - 4, angle: CGFloat(Double.pi/2 - Double.pi * 2 * (nameNumber - 0.5) / Double(namesArray.count)), colour: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.7), font: UIFont.systemFont(ofSize: 8), clockwise: true)
+//                centreArcPerpendicularText("Anticlockwise", context: context, radius: 50, angle: CGFloat(-Double.pi/2), colour: UIColor.blackColor(), font: UIFont.systemFontOfSize(16), clockwise: false)
                 
                 let image = UIGraphicsGetImageFromCurrentImageContext()
                 UIGraphicsEndImageContext()
@@ -226,8 +226,8 @@ class FlowerChart: UIView {
         // with the text centred at polar angle theta
         // *******************************************************
         
-        let l = str.characters.count
-        let attributes = [NSFontAttributeName: font]
+        let l = str.count
+        let attributes = [NSAttributedStringKey.font: font]
         
         var characters: [String] = [] // This will be an array of single character strings, each character in str
         var arcs: [CGFloat] = [] // This will be the arcs subtended by each character
@@ -235,15 +235,15 @@ class FlowerChart: UIView {
         
         // Calculate the arc subtended by each letter and their total
         for i in 0 ..< l {
-            characters += [String(str[str.characters.index(str.startIndex, offsetBy: i)])]
-            arcs += [chordToArc(characters[i].size(attributes: attributes).width, radius: r)]
+            characters += [String(str[str.index(str.startIndex, offsetBy: i)])]
+            arcs += [chordToArc(characters[i].size(withAttributes: attributes).width, radius: r)]
             totalArc += arcs[i]
         }
         
         // Are we writing clockwise (right way up at 12 o'clock, upside down at 6 o'clock)
         // or anti-clockwise (right way up at 6 o'clock)?
         let direction: CGFloat = clockwise ? -1 : 1
-        let slantCorrection = clockwise ? -CGFloat(M_PI_2) : CGFloat(M_PI_2)
+        let slantCorrection = clockwise ? -CGFloat(Double.pi/2) : CGFloat(Double.pi/2)
         
         // The centre of the first character will then be at
         // thetaI = theta - totalArc / 2 + arcs[0] / 2
@@ -279,8 +279,8 @@ class FlowerChart: UIView {
         // *******************************************************
         
         // Set the text attributes
-        let attributes = [NSForegroundColorAttributeName: c,
-                          NSFontAttributeName: font]
+        let attributes = [NSAttributedStringKey.foregroundColor: c,
+                          NSAttributedStringKey.font: font]
         // Save the context
         context.saveGState()
         // Undo the inversion of the Y-axis (or the text goes backwards!)
@@ -290,7 +290,7 @@ class FlowerChart: UIView {
         // Rotate the coordinate system
         context.rotate(by: -slantAngle)
         // Calculate the width of the text
-        let offset = str.size(attributes: attributes)
+        let offset = str.size(withAttributes: attributes)
         // Move the origin by half the size of the text
         context.translateBy (x: -offset.width / 2, y: -offset.height / 2) // Move the origin to the centre of the text (negating the y-axis manually)
         // Draw the text

@@ -13,6 +13,7 @@
 		A23209D01C9F487400DBD238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A23209CF1C9F487400DBD238 /* Assets.xcassets */; };
 		A23209D31C9F487400DBD238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23209D11C9F487400DBD238 /* LaunchScreen.storyboard */; };
 		A23209DB1CA15F0C00DBD238 /* FlowerChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23209DA1CA15F0C00DBD238 /* FlowerChart.swift */; };
+		E143F6392127EF9B000FE0D1 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = E143F6382127EF9B000FE0D1 /* screenshot.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A23209D21C9F487400DBD238 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A23209D41C9F487400DBD238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A23209DA1CA15F0C00DBD238 /* FlowerChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowerChart.swift; sourceTree = "<group>"; };
+		E143F6382127EF9B000FE0D1 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 		A23209BC1C9F487400DBD238 = {
 			isa = PBXGroup;
 			children = (
+				E143F6382127EF9B000FE0D1 /* screenshot.png */,
 				A23209C71C9F487400DBD238 /* flowerchart */,
 				A23209C61C9F487400DBD238 /* Products */,
 			);
@@ -57,12 +60,12 @@
 			isa = PBXGroup;
 			children = (
 				A23209C81C9F487400DBD238 /* AppDelegate.swift */,
-				A23209CA1C9F487400DBD238 /* ViewController.swift */,
-				A23209CC1C9F487400DBD238 /* Main.storyboard */,
-				A23209DA1CA15F0C00DBD238 /* FlowerChart.swift */,
 				A23209CF1C9F487400DBD238 /* Assets.xcassets */,
-				A23209D11C9F487400DBD238 /* LaunchScreen.storyboard */,
+				A23209DA1CA15F0C00DBD238 /* FlowerChart.swift */,
 				A23209D41C9F487400DBD238 /* Info.plist */,
+				A23209D11C9F487400DBD238 /* LaunchScreen.storyboard */,
+				A23209CC1C9F487400DBD238 /* Main.storyboard */,
+				A23209CA1C9F487400DBD238 /* ViewController.swift */,
 			);
 			path = flowerchart;
 			sourceTree = "<group>";
@@ -94,12 +97,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Alexander Telegin";
 				TargetAttributes = {
 					A23209C41C9F487400DBD238 = {
 						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -129,6 +132,7 @@
 				A23209D31C9F487400DBD238 /* LaunchScreen.storyboard in Resources */,
 				A23209D01C9F487400DBD238 /* Assets.xcassets in Resources */,
 				A23209CE1C9F487400DBD238 /* Main.storyboard in Resources */,
+				E143F6392127EF9B000FE0D1 /* screenshot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,13 +179,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -219,13 +233,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -244,6 +268,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -253,10 +278,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = flowerchart/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandertelegin.flowerchart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -265,10 +291,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = flowerchart/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandertelegin.flowerchart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
