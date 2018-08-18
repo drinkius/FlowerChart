@@ -21,7 +21,7 @@ The chart itself looks as follows:
 ## Requirements
 
 - iOS 8.0+
-- Xcode 7.3
+- Xcode 9
 
 ## Installation & usage
 
@@ -68,7 +68,7 @@ https://github.com/drinkius/flowerchart
 
 Good luck and feel free to report any issues, I'll fix them shortly!
 
-[swift-image]:https://img.shields.io/badge/swift-2.2-orange.svg
+[swift-image]:https://img.shields.io/badge/swift-4.2-orange.svg
 [swift-url]: https://swift.org/
 [license-image]: https://img.shields.io/badge/License-MIT-blue.svg
 [license-url]: LICENSE
