@@ -142,7 +142,12 @@ class FlowerChart: UIView {
             petalToSet.transform = scale.concatenating(rotate)
             petalToSet.alpha = 0
             
-            UIView.animate(withDuration: 0.5, delay: currentDelay, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: UIViewAnimationOptions(), animations: { () -> Void in
+            UIView.animate(withDuration: 0.5,
+                           delay: currentDelay,
+                           usingSpringWithDamping: 0.6,
+                           initialSpringVelocity: 2,
+                           options: UIView.AnimationOptions(),
+                           animations: { () -> Void in
                 
                 let scale = CGAffineTransform(scaleX: currentSize / 10, y: currentSize / 10)
                 let rotate = CGAffineTransform(rotationAngle: 0)
@@ -227,7 +232,7 @@ class FlowerChart: UIView {
         // *******************************************************
         
         let l = str.count
-        let attributes = [NSAttributedStringKey.font: font]
+        let attributes = [NSAttributedString.Key.font: font]
         
         var characters: [String] = [] // This will be an array of single character strings, each character in str
         var arcs: [CGFloat] = [] // This will be the arcs subtended by each character
@@ -279,8 +284,8 @@ class FlowerChart: UIView {
         // *******************************************************
         
         // Set the text attributes
-        let attributes = [NSAttributedStringKey.foregroundColor: c,
-                          NSAttributedStringKey.font: font]
+        let attributes = [NSAttributedString.Key.foregroundColor: c,
+                          NSAttributedString.Key.font: font]
         // Save the context
         context.saveGState()
         // Undo the inversion of the Y-axis (or the text goes backwards!)
